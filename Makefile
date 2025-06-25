@@ -1,2 +1,1 @@
-generate-gifs-json:
-    npx tsx data/generate-json.ts
+generate-gifs-json: npx tsx data/generate-json.ts
