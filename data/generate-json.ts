@@ -1,8 +1,8 @@
 import {promises as fs} from 'fs';
 import path from 'path';
 
-const GIFS_DIR = path.join(process.cwd(), '..//public/gifs');
-const OUT_PATH:string = path.join(process.cwd(), 'gifs.json');
+const GIFS_DIR = path.join(process.cwd(), './public/gifs');
+const OUT_PATH:string = path.join(process.cwd(), '/data/gifs.json');
 
 function slugToTitle(slug: string):string
 {
@@ -14,6 +14,7 @@ function slugToTitle(slug: string):string
 
 async function generate()
 {
+    console.log(GIFS_DIR);
     const files = await fs.readdir(GIFS_DIR);
 
     const data = files.map(file => ({
