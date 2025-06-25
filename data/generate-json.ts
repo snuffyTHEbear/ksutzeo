@@ -33,30 +33,36 @@ async function generate() {
         .map(file => {
             const id = file.replace(/\.[^/.]+$/, '');
 
-            // Find ALL Reddit posts that match this gif ID in their URL
             const matches = redditPosts.filter((post: any) =>
                 post.url?.toLowerCase().includes(id.toLowerCase())
             );
 
-            // Collect all unique subreddits this GIF was posted to
-            const subreddits = Array.from(new Set(matches.map(p => p.subreddit).filter(Boolean)));
+            const subreddits = Array.from(
+                new Set(matches.map(p => p.subreddit).filter(Boolean))
+            );
 
-            // Use the first Reddit match (for title, permalink, etc.)
+            const permalinks = Array.from(
+                new Set(matches.map(p => p.permalink).filter(Boolean))
+            );
+
+            const scores = matches.map(p => p.score).filter(score => typeof score === 'number');
+
             const reddit = matches[0];
 
             return {
-                gfycat_title:id,
+                gfycat_title: id,
                 file,
                 index: reddit?.id || i++,
                 title: reddit?.title || slugToTitle(file),
-                permalink: reddit?.permalink || null,
-                subreddit: reddit?.subreddit || null,
-                score: reddit?.score || null,
                 created_utc: reddit?.created_utc || null,
                 filename: file,
-                tags: subreddits // <- tags now include all subreddits
+                subreddits,
+                permalinks,
+                scores,
+                tags: subreddits
             };
         });
+
 
 
     await fs.writeFile(OUT_PATH, JSON.stringify(data, null, 2));
