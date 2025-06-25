@@ -2,8 +2,9 @@ type Gif = {
   filename: string;
   title: string;
   gfycat_title: string;
-  permalink: string | null;
-  score: number | null;
+  permalinks: string[];
+  subreddits: string[];
+  scores: number[];
   created_utc: number | null;
   tags: string[];
 };
@@ -31,20 +32,22 @@ export default function GifCard({ gif }: { gif: Gif }) {
         </h2>
         {isRedditPost && (
           <div className="text-sm text-gray-400 space-y-1">
-            {gif.permalink && (
-              <a
-                href={gif.permalink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 underline block"
-              >
-                View on Reddit
-              </a>
-            )}
-            <p>
-              Score: {gif.score}
-              {createdDate && <span className="ml-2">{createdDate}</span>}
-            </p>
+            {gif.permalinks.map((link, idx) => (
+              <div key={link}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 underline"
+                >
+                  {gif.subreddits[idx] || 'View on Reddit'}
+                </a>
+                {typeof gif.scores[idx] === 'number' && (
+                  <span className="ml-1">: {gif.scores[idx]}</span>
+                )}
+              </div>
+            ))}
+            {createdDate && <p>{createdDate}</p>}
           </div>
         )}
         {gif.tags && gif.tags.length > 0 && (
