@@ -1,7 +1,7 @@
 import {promises as fs} from 'fs';
 import path from 'path';
 
-const GIFS_DIR:string = process.env.GIFS_DIR as string;
+const GIFS_DIR = path.join(process.cwd(), '..//public/gifs');
 const OUT_PATH:string = path.join(process.cwd(), 'gifs.json');
 
 function slugToTitle(slug: string):string
