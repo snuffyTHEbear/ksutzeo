@@ -3,12 +3,12 @@ type Gif = {
   title: string;
   tags: string[];
 };
-const _gifPath = 'http://192.168.1.137:3000/gifs/';
+const _gifPath = process.env.NEXT_PUBLIC_GIF_HOST;//'http://192.168.1.137:3000/gifs/';
 export default function GifCard({ gif }: { gif: Gif }) {
   return (
     <div className="bg-gray-900 rounded overflow-hidden shadow-md">
       <img
-        src={`${_gifPath}${gif.filename}`}
+        src={`${_gifPath}/gifs/${gif.filename}`}
         alt={gif.title}
         className="w-full"
         loading="lazy"
