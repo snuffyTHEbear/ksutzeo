@@ -25,26 +25,39 @@ async function generate() {
         redditMap.set(post.id, post);
     });
 
+    //console.log(redditMap);
+
     let i = 0;
     const data = files
         .filter(file => file.endsWith('.mp4'))
         .map(file => {
-            const id = file.replace(/\.[^/.]+$/, ''); // strip extension
-            const reddit = redditMap.get(id);
+            const id = file.replace(/\.[^/.]+$/, '');
+
+            // Find ALL Reddit posts that match this gif ID in their URL
+            const matches = redditPosts.filter((post: any) =>
+                post.url?.toLowerCase().includes(id.toLowerCase())
+            );
+
+            // Collect all unique subreddits this GIF was posted to
+            const subreddits = Array.from(new Set(matches.map(p => p.subreddit).filter(Boolean)));
+
+            // Use the first Reddit match (for title, permalink, etc.)
+            const reddit = matches[0];
 
             return {
-                id,
+                gfycat_title:id,
                 file,
-                index: i++,
+                index: reddit?.id || i++,
                 title: reddit?.title || slugToTitle(file),
                 permalink: reddit?.permalink || null,
                 subreddit: reddit?.subreddit || null,
                 score: reddit?.score || null,
                 created_utc: reddit?.created_utc || null,
                 filename: file,
-                tags: [] // leave tagging for later or editor UI
+                tags: subreddits // <- tags now include all subreddits
             };
         });
+
 
     await fs.writeFile(OUT_PATH, JSON.stringify(data, null, 2));
     console.log(`✅ gifs.json written with ${data.length} enriched entries.`);
