@@ -3,7 +3,7 @@ type Gif = {
   title: string;
   tags: string[];
 };
-const _gifPath = 'http://192.168.1.137:3000/public/gifs/';
+const _gifPath = 'http://192.168.1.137:3000/gifs/';
 export default function GifCard({ gif }: { gif: Gif }) {
   return (
     <div className="bg-gray-900 rounded overflow-hidden shadow-md">
