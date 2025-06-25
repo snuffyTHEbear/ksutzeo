@@ -3,15 +3,17 @@ type Gif = {
   title: string;
   tags: string[];
 };
-const _gifPath = process.env.NEXT_PUBLIC_GIF_HOST;
+const _gifPath = process.env.NEXT_PUBLIC_GIF_HOST || "";
 export default function GifCard({ gif }: { gif: Gif }) {
   return (
     <div className="bg-gray-900 rounded overflow-hidden shadow-md">
-      <img
+      <video
         src={`${_gifPath}/gifs/${gif.filename}`}
-        alt={gif.title}
         className="w-full"
-        loading="lazy"
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       <div className="p-2">
         <h2 className="text-lg font-semibold">{gif.title}</h2>
