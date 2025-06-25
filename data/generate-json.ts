@@ -16,11 +16,13 @@ async function generate()
 {
     console.log(GIFS_DIR);
     const files = await fs.readdir(GIFS_DIR);
-
+    let i = 0;
     const data = files.map(file => ({
         file,
+            index:i++,
             title: slugToTitle(file),
-            tages:[]
+            filename: file,
+            tags:[]
     }));
 
     await fs.writeFile(OUT_PATH, JSON.stringify(data, null, 2));

@@ -7,7 +7,7 @@ export default function Home() {
       <h1 className="text-3xl mb-6 font-bold">Ksut Zeo</h1>
       <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
         {gifs.map((gif) => (
-          <GifCard key={gif.filename} gif={gif} />
+          <GifCard key={gif.index} gif={gif} />
         ))}
       </div>
     </div>
