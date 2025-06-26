@@ -17,7 +17,7 @@ export default function GifCard({ gif }: { gif: Gif }) {
     : null;
 
   return (
-    <div className=" rounded overflow-hidden shadow-md">
+    <div className="rounded overflow-hidden shadow-lg">
       <video
         src={`${_gifPath}/gifs/${gif.filename}`}
         className="w-full"
