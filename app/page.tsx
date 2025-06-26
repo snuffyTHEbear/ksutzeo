@@ -7,7 +7,7 @@ export default function Home() {
   const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
 
   return (
-    <div className="min-h-screen  text-white flex items-center justify-center p-4">
+    <div className="min-h-screen text-white flex items-start justify-center pt-8 p-4">
       <GifCard gif={randomGif} />
     </div>
   );
