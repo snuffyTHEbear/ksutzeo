@@ -14,13 +14,29 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* Dark theme uses a deep grey so the grid remains visible */
+    --background: #1b1b1b;
     --foreground: #ededed;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 182, 193, 0.15) 0px,
+      rgba(255, 182, 193, 0.15) 1px,
+      transparent 1px,
+      transparent 50px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(176, 224, 230, 0.15) 0px,
+      rgba(176, 224, 230, 0.15) 1px,
+      transparent 1px,
+      transparent 50px
+    );
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
