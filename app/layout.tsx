@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Logo } from "@/components/KsutZeoLogo";
-import { SubHeaderLogo } from "@/components/SubHeaderLogo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +27,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-            <Logo variant={"gradient"} className="mt-5 ml-4 w-2/3 max-w-none"/>
-            <SubHeaderLogo variant={"gradient"} className="mt-2 ml-4 w-1/2 max-w-none" />
+        <header className="flex justify-between">
+          <h1 className="mt-5 ml-4 text-[30px] text-white drop-shadow-md font-sans">
+            Ksut Zeo
+          </h1>
+          <h2 className="mt-5 mr-4 text-right text-[25px] text-white drop-shadow-md font-sans">
+            I can't code.
+          </h2>
+        </header>
         {children}
       </body>
     </html>
