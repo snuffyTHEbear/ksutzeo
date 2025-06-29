@@ -20,7 +20,7 @@ export default function GifCard({ gif }: { gif: Gif }) {
     <div className="rounded overflow-hidden shadow-lg">
       <video
         src={`${_gifPath}/gifs/${gif.filename}`}
-        className="w-full max-h-screen object-contain"
+        className="w-full"
         autoPlay
         loop
         muted
