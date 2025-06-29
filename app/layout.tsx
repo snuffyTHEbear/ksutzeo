@@ -29,8 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-            <Logo variant={"gradient"} className="mt-5"/>
-            <SubHeaderLogo variant={"gradient"} className="mt-2" />
+            <Logo variant={"gradient"} className="mt-5 ml-4 w-2/3 max-w-none"/>
+            <SubHeaderLogo variant={"gradient"} className="mt-2 ml-4 w-1/2 max-w-none" />
         {children}
       </body>
     </html>
