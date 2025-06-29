@@ -1,3 +1,5 @@
+'use client'
+
 import gifs from '@/data/gifs.json';
 import GifCard from '@/components/GifCard';
 import { useCallback, useState } from 'react';
